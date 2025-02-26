@@ -3,18 +3,33 @@
 namespace App\Controllers;
 
 use App\Models\MPengguna;
+use App\Models\MMateri;
 
 class Home extends BaseController
 {
     protected $MPengguna;
+    protected $MMateri;
     public function __construct()
     {
         $this->MPengguna = new MPengguna();
+        $this->MMateri = new MMateri();
     }
-    public function index(): string
+    public function index()
     {
-        $html = "<h1>Ini Home Page</h1>";
-        return $html;
+        $data = [
+            'title' => 'Menu Utama',
+        ];
+        return view('menu_utama', $data);
+    }
+    public function materi()
+    {
+        $materi = $this->MMateri->find();
+
+        $data = [
+            'title' => 'Menu Materi',
+            'materi' => $materi
+        ];
+        return view('menu_materi', $data);
     }
     public function login()
     {
