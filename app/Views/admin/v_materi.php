@@ -28,7 +28,7 @@
                     <tbody>
                         <?php foreach ($materi as $m) { ?>
                             <tr>
-                                <td><?= $m['judul'] ?></td>
+                                <td><?= $m['judul_materi'] ?></td>
                                 <td><?= $m['deskripsi'] ?></td>
                                 <td><?= $m['updated_at'] ?></td>
                                 <td>

@@ -56,10 +56,32 @@ class Materi extends BaseController
     {
         $judul = $this->request->getVar('judul');
         $desk = $this->request->getVar('desk');
+        if (!$this->validate([
+            'foto' => [
+                'rules' => 'is_image[foto]|mime_in[foto,image/jpg,image/jpeg,image/gif,image/png]|max_size[foto,2048]',
+                'errors' => [
+                    'mime_in' => 'File Extention Harus Berupa jpg,jpeg,gif,png',
+                    'max_size' => 'Ukuran File Maksimal 2 MB'
+                ]
+
+            ]
+        ])) {
+            session()->setFlashdata('error', $this->validator->listErrors());
+            return redirect()->back()->withInput();
+        }
+        $Berkasfoto = $this->request->getFile('foto');
+        // jika form foto kosong
+        if ($Berkasfoto->getError() == 4) {
+            $filefoto = 'blank.png';
+        } else {
+            $filefoto = $Berkasfoto->getRandomName();
+            $Berkasfoto->move('thum_materi/', $filefoto);
+        }
         date_default_timezone_set('Asia/Makassar');
         $data = [
-            'judul' => $judul,
-            'deskripsi' => $desk
+            'judul_materi' => $judul,
+            'deskripsi' => $desk,
+            'gambar_thum' => $filefoto
         ];
         $this->MMateri->save($data);
         session()->setFlashdata('pesan', 'Data Berhasil Disimpan');
@@ -89,10 +111,39 @@ class Materi extends BaseController
         $id_materi = $this->request->getVar('id_materi');
         $judul = $this->request->getVar('judul');
         $desk = $this->request->getVar('desk');
+        if (!$this->validate([
+            'foto' => [
+                'rules' => 'is_image[foto]|mime_in[foto,image/jpg,image/jpeg,image/gif,image/png]|max_size[foto,2048]',
+                'errors' => [
+                    'mime_in' => 'File Extention Harus Berupa jpg,jpeg,gif,png',
+                    'max_size' => 'Ukuran File Maksimal 2 MB'
+                ]
+
+            ]
+        ])) {
+            session()->setFlashdata('error', $this->validator->listErrors());
+            return redirect()->back()->withInput();
+        }
+        $Berkasfoto = $this->request->getFile('foto');
+
+        // jika form foto kosong
+        if ($Berkasfoto->getError() == 4) {
+            $filefoto =  $this->request->getVar('fl');
+        } else {
+            $filefoto = $Berkasfoto->getRandomName();
+            $Berkasfoto->move('gambar_thum/', $filefoto);
+            //hapus file yang lama
+            $a = $this->MMateri->where(['id_materi' => $id_materi])->get()->getResultArray();
+            foreach ($a as $b) {
+                if ($b['gambar_thum'] != 'blank.jpg') {
+                    unlink('thum_materi/' . $b['gambar_thum']);
+                }
+            }
+        }
         date_default_timezone_set('Asia/Makassar');
         $data = [
             'id_materi' => $id_materi,
-            'judul' => $judul,
+            'judul_materi' => $judul,
             'deskripsi' => $desk
         ];
         $this->MMateri->save($data);

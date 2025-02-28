@@ -10,19 +10,23 @@
             <div class="card-body">
                 <form action="<?= base_url('act_simpan_sub') ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
-                    <?php foreach ($materi as $m) { ?>
-                        <input type="hidden" name="materi" value="<?= $m['id_materi'] ?>">
-                    <?php } ?>
                     <div class="row">
-                        <div class="form-group col-6">
+                        <div class="form-group col-4">
+                            <select name="materi" id="" class="form-control">
+                                <?php foreach ($materi as $m) { ?>
+                                    <option value="<?= $m['id_materi'] ?>"><?= $m['judul_materi'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-5">
                             <input type="text" name="sub" id="helperText" class="form-control" placeholder="Sub Materi" required>
                         </div>
-                        <div class="form-group col-6">
+                        <div class="form-group col-3">
                             <input type="file" name="foto" class="form-control">
                         </div>
                     </div>
                     <div class="form-group mb-3">
-                        <textarea name="konten" id="summernote" cols="30" rows="10"></textarea>
+                        <textarea name="konten" id="mytextarea" cols="30" rows="10"></textarea>
                     </div>
                     <!-- <div id="summernote"></div> -->
                     <button type="submit" class="btn btn-primary btn-sm">Simpan</button>

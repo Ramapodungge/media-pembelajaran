@@ -25,8 +25,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($kuis as $dk):
-                            $no = 1;
+                        <?php
+                        $no = 1;
+                        foreach ($kuis as $dk):
                         ?>
                             <tr>
                                 <td><?= $no++ ?></td>

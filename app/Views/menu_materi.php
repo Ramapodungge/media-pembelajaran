@@ -12,15 +12,24 @@
     <h1 class="title animate__animated animate__zoomIn animate__delay-2s mt-5">MATERI</h1>
     <div class="card-container">
         <?php foreach ($materi as $dm) { ?>
-            <a href="">
+            <a href="sub_materi/<?= $dm['id_materi'] ?>">
                 <div class="card">
                     <img src="thum_materi/<?= $dm['gambar_thum'] ?>" alt="Materi">
                     <div class="card-content">
-                        <h3><?= $dm['judul'] ?></h3>
+                        <h3><?= $dm['judul_materi'] ?></h3>
                         <p><?= $dm['deskripsi'] ?></p>
                     </div>
                 </div>
             </a>
         <?php } ?>
+        <a href="kuis_name">
+            <div class="card">
+                <img src="kuis.jpg" alt="Materi">
+                <div class="card-content">
+                    <h3>Quiz</h3>
+                    <p>Menu Untuk Mengasah Kemampuan anda.</p>
+                </div>
+            </div>
+        </a>
     </div>
     <?= $this->endSection(); ?>

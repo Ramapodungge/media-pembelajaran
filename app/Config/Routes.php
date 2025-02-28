@@ -7,6 +7,9 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 $routes->get('/menu_materi', 'Home::materi');
+$routes->get('/sub_materi/(:num)', 'Home::sub_materi/$1');
+$routes->get('/isi_materi/(:num)', 'Home::isi_materi/$1');
+$routes->get('/isi_materi/(:num)/(:num)', 'Home::isi_materi/$1/$2');
 $routes->get('/login_admin', 'Home::login');
 $routes->get('/dashboard', 'Dashboard::dashboard');
 $routes->get('/kuis', 'Kuis::kuis');
@@ -33,5 +36,7 @@ $routes->post('/act_simpan_kuis', 'Kuis::simpan');
 $routes->get('/edit_kuis/(:num)', 'Kuis::edit/$1');
 $routes->post('/act_edit_kuis', 'Kuis::simpan_edit');
 
-
+$routes->get('/kuis_name', 'Home::kuis_name');
+$routes->get('/waktunya_quiz', 'Home::menu_kuis');
+$routes->post('/submit', 'Home::checkAnswer');
 // Batas Quis

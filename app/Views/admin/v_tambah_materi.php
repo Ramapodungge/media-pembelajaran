@@ -8,10 +8,15 @@
                 <h4>Tambah Materi</h4>
             </div>
             <div class="card-body">
-                <form action="<?= base_url('act_simpan') ?>" method="post">
+                <form action="<?= base_url('act_simpan') ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
-                    <div class="form-group">
-                        <input type="text" name="judul" id="helperText" class="form-control" placeholder="Judul" required>
+                    <div class="row">
+                    <div class="form-group col-sm-12 col-md-12 col-lg-3">
+                        <input type="file" name="foto" class="form-contol">
+                    </div>
+                        <div class="form-group col-sm-12 col-md-12 col-lg-9">
+                            <input type="text" name="judul" id="helperText" class="form-control" placeholder="Judul" required>
+                        </div>
                     </div>
                     <div class="form-group mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>

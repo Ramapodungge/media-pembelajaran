@@ -45,26 +45,22 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
-
                         <li class="sidebar-item <?= $title === "Halaman Materi" ? 'active' : '' ?>">
                             <a href="<?= base_url('materi') ?>" class='sidebar-link'>
                                 <i class="bi bi-book-fill"></i>
                                 <span>Materi</span>
                             </a>
                         </li>
+                        <?php if (session()->get('level') == 'admin') {
+                        ?>
 
-                        <li class="sidebar-item <?= $title === "Halaman Kuis" ? 'active' : '' ?>">
-                            <a href="<?= base_url('kuis') ?>" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
-                                <span>Quiz</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item <?= $title === "Halaman Pengguna" ? 'active' : '' ?>">
-                            <a href="<?= base_url('pengguna') ?>" class='sidebar-link'>
-                                <i class="bi bi-grid-1x2-fill"></i>
-                                <span>Pengguna</span>
-                            </a>
-                        </li>
+                            <li class="sidebar-item <?= $title === "Halaman Kuis" ? 'active' : '' ?>">
+                                <a href="<?= base_url('kuis') ?>" class='sidebar-link'>
+                                    <i class="bi bi-collection-fill"></i>
+                                    <span>Quiz</span>
+                                </a>
+                            </li>
+                        <?php } ?>
                         <?php if ($title != "Halaman Dashboard") { ?>
                             <li class="sidebar-item">
                                 <a href="logout" class="btn btn-danger btn-sm col-12 mt-3">Logout</a>
@@ -102,6 +98,7 @@
             </footer>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.4/dist/sweetalert2.all.min.js"></script>
     <script src="<?= base_url('assets/vendors/jquery/jquery.min.js') ?>"></script>
     <script src="<?= base_url('assets/vendors/tinymce/tinymce.min.js') ?>"></script>
     <script src="<?= base_url('assets/vendors/tinymce/plugins/code/plugin.min.js') ?>"></script>
@@ -141,7 +138,20 @@
             }
         });
     </script>
-
+    <script>
+        tinymce.init({
+            selector: '#mytextarea',
+            plugins: 'pagebreak image fontselect fontsizeselect advlist align lists', // Tambahkan advlist dan align
+            toolbar: 'undo redo | bold italic | fontselect | fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist | paragraph | pagebreak | image', // Tambahkan toolbar untuk align dan paragraph
+            menubar: false,
+            setup: function(editor) {
+                editor.on('init', function() {
+                    // Menambahkan pagebreak otomatis saat inisialisasi
+                    editor.execCommand('mceInsertPageBreak');
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <h6 class="text-muted font-semibold">Materi</h6>
-                                    <h6 class="font-extrabold mb-0">112.000</h6>
+                                    <h6 class="font-extrabold mb-0"><?= $materi ?></h6>
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <h6 class="text-muted font-semibold">Pengguna</h6>
-                                    <h6 class="font-extrabold mb-0">183.000</h6>
+                                    <h6 class="font-extrabold mb-0"><?= $pengguna ?></h6>
                                 </div>
                             </div>
                         </div>
@@ -56,8 +56,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Following</h6>
-                                    <h6 class="font-extrabold mb-0">80.000</h6>
+                                    <h6 class="text-muted font-semibold">Gambar</h6>
+                                    <h6 class="font-extrabold mb-0"><?= $gambar ?></h6>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <h6 class="text-muted font-semibold">Quiz</h6>
-                                    <h6 class="font-extrabold mb-0">112</h6>
+                                    <h6 class="font-extrabold mb-0"><?= $kuis ?></h6>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                         </div>
                         <div class="ms-3 name">
                             <h5 class="font-bold"><?= session()->get('nama_pengguna') ?></h5>
-                            <h6 class="text-muted mb-0">@admin</h6>
+                            <h6 class="text-muted mb-0">@<?= session()->get('level') ?></h6>
                             <a href="logout" class="btn btn-danger btn-sm mt-3">Logout</a>
                         </div>
                     </div>
